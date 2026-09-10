@@ -1,5 +1,6 @@
 import { Newsreader, Public_Sans } from 'next/font/google';
 import './globals.css';
+import './hero.css';
 
 // Newsreader: editorial serif with warmth — carries the civic register without
 // feeling like a law firm. Public Sans: the USWDS text face, built for

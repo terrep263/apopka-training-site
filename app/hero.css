@@ -1,0 +1,64 @@
+/* ===== FULL-WIDTH HERO BAND =====
+   Edge-to-edge photograph with the seal and headline over it. The scrim is
+   heavy enough that white text stays readable across faces and sky alike. */
+.hero-band{
+  position:relative;
+  background:var(--navy-900);
+  border-bottom:5px solid var(--gold-500);
+  min-height:clamp(30rem,58vh,44rem);
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.hero-band .bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 32%;
+}
+.hero-band .scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,20,48,.80) 0%, rgba(0,20,48,.72) 45%, rgba(0,20,48,.90) 100%),
+    radial-gradient(120% 90% at 50% 40%, rgba(0,20,48,.28), rgba(0,20,48,.72));
+}
+.hero-band .in{
+  position:relative;z-index:1;text-align:center;
+  max-width:58rem;padding:4rem 1.5rem 4.25rem;
+}
+.hero-band .crest{
+  width:min(7.5rem,22vw);height:auto;margin:0 auto 1.5rem;display:block;
+  filter:drop-shadow(0 8px 26px rgba(0,0,0,.6));
+}
+.hero-band .pillars{
+  color:var(--gold-400);font-size:clamp(.8rem,1.9vw,.95rem);font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;margin:0 0 1.2rem;
+}
+.hero-band h1{
+  font-family:var(--font-serif),Georgia,serif;color:#fff;font-weight:500;
+  font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.02em;
+  margin:0 auto 1.25rem;max-width:20ch;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.hero-band h1 em{font-style:italic;color:var(--gold-400)}
+.hero-band .stand{
+  color:#dbe4f0;font-size:clamp(1.02rem,1.9vw,1.2rem);line-height:1.6;
+  max-width:52ch;margin:0 auto 2rem;
+  text-shadow:0 1px 12px rgba(0,0,0,.5);
+}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
+.hero-actions a{
+  display:inline-flex;align-items:center;min-height:52px;
+  padding:.8rem 1.7rem;border-radius:var(--r);font-weight:600;text-decoration:none;
+}
+.hero-actions .primary{background:var(--gold-500);color:var(--navy-900);
+  border:1px solid var(--gold-600)}
+.hero-actions .primary:hover{background:var(--gold-400)}
+.hero-actions .secondary{background:rgba(255,255,255,.10);color:#fff;
+  border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(2px)}
+.hero-actions .secondary:hover{background:rgba(255,255,255,.20)}
+
+/* No photograph in the repo yet — plain navy, same layout. */
+.hero-band.noshot .scrim{background:none}
+
+@media(max-width:640px){
+  .hero-band{min-height:26rem}
+  .hero-band .in{padding:2.75rem 1.25rem 3rem}
+}
