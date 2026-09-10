@@ -1,6 +1,6 @@
 /* ===== FULL-WIDTH HERO BAND =====
-   Edge-to-edge photograph with the seal and headline over it. The scrim is
-   heavy enough that white text stays readable across faces and sky alike. */
+   Edge-to-edge photograph under an even navy overlay. Flat wash rather than a
+   gradient, so the blue reads the same across the whole band. */
 .hero-band{
   position:relative;
   background:var(--navy-900);
@@ -15,9 +15,7 @@
 }
 .hero-band .scrim{
   position:absolute;inset:0;
-  background:
-    linear-gradient(180deg, rgba(0,20,48,.80) 0%, rgba(0,20,48,.72) 45%, rgba(0,20,48,.90) 100%),
-    radial-gradient(120% 90% at 50% 40%, rgba(0,20,48,.28), rgba(0,20,48,.72));
+  background:rgba(0,32,72,.82);
 }
 .hero-band .in{
   position:relative;z-index:1;text-align:center;
@@ -35,13 +33,11 @@
   font-family:var(--font-serif),Georgia,serif;color:#fff;font-weight:500;
   font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.02em;
   margin:0 auto 1.25rem;max-width:20ch;
-  text-shadow:0 2px 18px rgba(0,0,0,.45);
 }
 .hero-band h1 em{font-style:italic;color:var(--gold-400)}
 .hero-band .stand{
   color:#dbe4f0;font-size:clamp(1.02rem,1.9vw,1.2rem);line-height:1.6;
   max-width:52ch;margin:0 auto 2rem;
-  text-shadow:0 1px 12px rgba(0,0,0,.5);
 }
 .hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
 .hero-actions a{
@@ -52,7 +48,7 @@
   border:1px solid var(--gold-600)}
 .hero-actions .primary:hover{background:var(--gold-400)}
 .hero-actions .secondary{background:rgba(255,255,255,.10);color:#fff;
-  border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(2px)}
+  border:1px solid rgba(255,255,255,.45)}
 .hero-actions .secondary:hover{background:rgba(255,255,255,.20)}
 
 /* No photograph in the repo yet — plain navy, same layout. */
