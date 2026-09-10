@@ -11,8 +11,8 @@ export const metadata = {
 
 const NAME = 'Apopka Senior Council for Good Governance';
 
-// The header image is optional. If site/hero was never added, the banner falls
-// back to plain colour rather than a broken image.
+// The hero photograph is optional. If site/hero was never added, the split
+// collapses to a single column rather than showing a broken image.
 const hasHero = fs.existsSync(path.join(process.cwd(), 'public', 'hero.webp'));
 
 export default function Home() {
@@ -27,38 +27,44 @@ export default function Home() {
               <span className="kicker">For Good Governance</span>
             </span>
           </Link>
-          <Link href="/login" className="signin">Volunteer sign in</Link>
+          <Link href="/login" className="signin">Member sign in</Link>
         </nav>
       </header>
 
-      <section
-        className="banner"
-        style={hasHero ? { '--hero': 'url(/hero.webp)' } : undefined}
-      >
-        {hasHero && <div className="bg" />}
-        <div className="veil" />
-        <div className="in">
+      <section className={hasHero ? 'hero-split' : 'hero-split noshot'}>
+        <div className="words">
           <Image
-            src="/logo.webp"
+            src="/logo-sm.webp"
             alt={`${NAME} seal`}
-            width={566}
-            height={720}
-            className="seal"
+            width={74}
+            height={94}
+            className="crest"
             priority
             unoptimized
           />
-          <h1>Apopka Senior Council for Good Governance</h1>
-          <p className="pillars">Experience. Knowledge. Service. Accountability.</p>
+          <p className="pillars">Experience &middot; Knowledge &middot; Service &middot; Accountability</p>
+          <h1>
+            Good government begins with an <em>informed community</em>.
+          </h1>
+          <p className="stand">
+            A volunteer-led community organization helping Apopka residents understand local
+            government, public policy, civic responsibility, and the decisions that affect our
+            community.
+          </p>
+          <div className="hero-actions">
+            <Link href="/login" className="primary">Member sign in</Link>
+            <Link href="#what-we-do" className="secondary">What we do</Link>
+          </div>
         </div>
+        {hasHero && (
+          <div className="shot">
+            <img src="/hero.webp" alt="Members of the Apopka community" />
+          </div>
+        )}
       </section>
 
       <main className="home-main">
         <div className="intro">
-          <p>
-            The Apopka Senior Council for Good Governance is a volunteer-led community
-            organization dedicated to helping residents better understand local government,
-            public policy, civic responsibility, and the decisions that affect our community.
-          </p>
           <p>
             Our members bring decades of professional experience, community involvement,
             leadership, and life experience to one purpose: helping the people of Apopka become
@@ -101,7 +107,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <h2>What we do</h2>
+        <h2 id="what-we-do">What we do</h2>
         <div className="grid2">
           <div className="panel">
             <h3>Civic Education</h3>
@@ -191,14 +197,14 @@ export default function Home() {
 
         <div className="cta">
           <h2>Council members</h2>
-          <p>Training and reference material for volunteers. Your Team Lead has the password.</p>
-          <Link href="/login">Volunteer sign in</Link>
+          <p>Training and reference material for members. Your Team Lead has the password.</p>
+          <Link href="/login">Member sign in</Link>
         </div>
       </main>
 
       <footer className="home-foot">
         Apopka Senior Council for Good Governance &middot; Apopka, Florida &middot;{' '}
-        <Link href="/login">Volunteer sign in</Link>
+        <Link href="/login">Member sign in</Link>
       </footer>
     </>
   );
