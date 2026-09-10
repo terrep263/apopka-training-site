@@ -1,74 +1,205 @@
-import { redirect } from 'next/navigation';
+import fs from 'node:fs';
+import path from 'node:path';
+import Link from 'next/link';
 import Image from 'next/image';
-import ShowPassword from '@/components/ShowPassword';
-import { isSignedIn } from '@/lib/auth';
 
-export const dynamic = 'force-dynamic';
-
-const MESSAGES = {
-  bad: 'That password is not right. Check with your Team Lead.',
-  empty: 'Enter the group password to continue.',
-  expired: 'Your sign-in expired. Enter the password again.',
-  locked: 'Too many attempts. Wait ten minutes and try again.',
+export const metadata = {
+  title: 'Apopka Senior Council for Good Governance',
+  description:
+    'A volunteer-led community organization helping Apopka residents understand local government, public policy, and civic responsibility.',
 };
 
-export default function Portal({ searchParams }) {
-  if (isSignedIn()) redirect('/hub');
+const NAME = 'Apopka Senior Council for Good Governance';
 
-  const error = MESSAGES[searchParams?.e] || '';
-  const next = typeof searchParams?.next === 'string' ? searchParams.next : '/hub';
+// The header image is optional. If site/hero was never added, the banner falls
+// back to plain colour rather than a broken image.
+const hasHero = fs.existsSync(path.join(process.cwd(), 'public', 'hero.webp'));
 
+export default function Home() {
   return (
-    <main className="portal">
-      <div className="portal-inner">
-        <Image
-          src="/logo.webp"
-          alt="Apopka Seniors Council for Good Governance seal"
-          width={566}
-          height={720}
-          className="seal"
-          priority
-          unoptimized
-        />
+    <>
+      <header className="home-head">
+        <nav className="home-nav">
+          <Link href="/" className="idg">
+            <Image src="/logo-sm.webp" alt="" width={44} height={56} unoptimized />
+            <span>
+              <b>Apopka Senior Council</b>
+              <span className="kicker">For Good Governance</span>
+            </span>
+          </Link>
+          <Link href="/login" className="signin">Volunteer sign in</Link>
+        </nav>
+      </header>
 
-        <h1>Apopka Seniors Council</h1>
-        <p className="tag">For Good Governance</p>
-        <div className="rule" />
+      <section
+        className="banner"
+        style={hasHero ? { '--hero': 'url(/hero.webp)' } : undefined}
+      >
+        {hasHero && <div className="bg" />}
+        <div className="veil" />
+        <div className="in">
+          <Image
+            src="/logo.webp"
+            alt={`${NAME} seal`}
+            width={566}
+            height={720}
+            className="seal"
+            priority
+            unoptimized
+          />
+          <h1>Apopka Senior Council for Good Governance</h1>
+          <p className="pillars">Experience. Knowledge. Service. Accountability.</p>
+        </div>
+      </section>
 
-        <div className="portal-card">
-          <h2>Volunteer training portal</h2>
-          <p className="sub">Enter the group password to continue.</p>
-
-          {error && (
-            <div className="err" role="alert">
-              {error}
-            </div>
-          )}
-
-          <form action="/api/login" method="POST">
-            <input type="hidden" name="next" value={next} />
-            <div className="field">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                autoFocus
-                required
-              />
-            </div>
-            <ShowPassword />
-            <button className="btn gold" type="submit">
-              Sign in
-            </button>
-          </form>
+      <main className="home-main">
+        <div className="intro">
+          <p>
+            The Apopka Senior Council for Good Governance is a volunteer-led community
+            organization dedicated to helping residents better understand local government,
+            public policy, civic responsibility, and the decisions that affect our community.
+          </p>
+          <p>
+            Our members bring decades of professional experience, community involvement,
+            leadership, and life experience to one purpose: helping the people of Apopka become
+            better informed and more engaged in the civic process.
+          </p>
         </div>
 
-        <p className="foot">
-          Your Team Lead has the password. It is the same one for everyone in the group.
+        <h2>Good government begins with an informed community</h2>
+        <p>
+          Local government affects many parts of everyday life, including public safety, roads,
+          development, taxes, city services, budgeting, parks, utilities, and the long-term
+          direction of our community.
         </p>
-      </div>
-    </main>
+        <p>Yet government processes can often be difficult to understand.</p>
+        <p>We work to make those processes clearer.</p>
+        <p>
+          Through educational programs, public discussions, community forums, research, and
+          informational resources, the Council helps residents understand how local government
+          works, how decisions are made, where public money goes, and how citizens can
+          participate effectively.
+        </p>
+
+        <h2>Our mission</h2>
+        <p>
+          Our mission is to educate, inform, and encourage responsible civic participation while
+          promoting the principles of good governance.
+        </p>
+        <div className="panel">
+          <h3>We believe good governance includes:</h3>
+          <ul className="principles">
+            <li>Transparency in public decision-making.</li>
+            <li>Accountability from public institutions and officials.</li>
+            <li>Responsible management of taxpayer resources.</li>
+            <li>Open access to reliable public information.</li>
+            <li>Respectful public participation.</li>
+            <li>Ethical leadership and public service.</li>
+            <li>
+              Decisions based on facts, evidence, and the long-term interests of the community.
+            </li>
+          </ul>
+        </div>
+
+        <h2>What we do</h2>
+        <div className="grid2">
+          <div className="panel">
+            <h3>Civic Education</h3>
+            <p>
+              We explain how city government works, including the responsibilities of elected
+              officials, city staff, boards, committees, and residents.
+            </p>
+          </div>
+          <div className="panel">
+            <h3>Community Information</h3>
+            <p>
+              We help residents understand important local issues by presenting relevant facts,
+              public records, government documents, and other reliable information in clear
+              language.
+            </p>
+          </div>
+          <div className="panel">
+            <h3>Public Forums and Discussions</h3>
+            <p>
+              We create opportunities for residents to learn about important community issues,
+              ask questions, hear different perspectives, and better understand matters
+              affecting Apopka.
+            </p>
+          </div>
+          <div className="panel">
+            <h3>Government Accountability</h3>
+            <p>
+              We encourage transparency, responsible stewardship of public resources, ethical
+              conduct, and adherence to established government processes.
+            </p>
+          </div>
+          <div className="panel">
+            <h3>Citizen Engagement</h3>
+            <p>
+              We help residents understand how to attend public meetings, review government
+              documents, communicate with public officials, participate in public hearings, and
+              make their voices part of the civic process.
+            </p>
+          </div>
+        </div>
+
+        <h2>Seniors serving the community</h2>
+        <p>
+          Our members have spent decades building careers, raising families, serving their
+          country, operating businesses, working in public service, volunteering, and
+          contributing to their communities.
+        </p>
+        <p>Retirement does not end the value of that experience.</p>
+        <p>
+          The Apopka Senior Council for Good Governance provides seniors with an opportunity to
+          continue serving by sharing their knowledge, experience, and perspective with the
+          broader community.
+        </p>
+
+        <h2>Nonpartisan. Fact-based. Community-focused.</h2>
+        <div className="pull">
+          <p>
+            The Council is not organized to serve a political party, candidate, faction, or
+            special interest.
+          </p>
+          <p>
+            <strong>Our responsibility is to the community.</strong>
+          </p>
+          <p>
+            We believe residents should have access to accurate information, understand the
+            issues before them, examine the evidence, ask serious questions, and reach their own
+            conclusions.
+          </p>
+          <p>Good governance is not about who wins an argument.</p>
+          <p>
+            It is about whether government serves the public responsibly, transparently,
+            ethically, and effectively.
+          </p>
+        </div>
+
+        <h2>Know your government. Understand the issues. Participate in your community.</h2>
+        <p>
+          Democracy works best when citizens understand how their government operates and remain
+          engaged in the decisions being made in their name.
+        </p>
+        <p>
+          The Apopka Senior Council for Good Governance exists to help make that possible.
+        </p>
+        <p>
+          <strong>Learn. Participate. Stay Informed.</strong>
+        </p>
+
+        <div className="cta">
+          <h2>Council members</h2>
+          <p>Training and reference material for volunteers. Your Team Lead has the password.</p>
+          <Link href="/login">Volunteer sign in</Link>
+        </div>
+      </main>
+
+      <footer className="home-foot">
+        Apopka Senior Council for Good Governance &middot; Apopka, Florida &middot;{' '}
+        <Link href="/login">Volunteer sign in</Link>
+      </footer>
+    </>
   );
 }

@@ -6,7 +6,7 @@ import { isSignedIn } from '@/lib/auth';
 export const dynamic = 'force-dynamic';
 
 export default function HubLayout({ children }) {
-  if (!isSignedIn()) redirect('/?e=expired');
+  if (!isSignedIn()) redirect('/login?e=expired');
 
   return (
     <ProgressProvider>

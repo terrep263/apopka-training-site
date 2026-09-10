@@ -41,12 +41,12 @@ export async function POST(request) {
   const origin = baseUrl(request);
   const back = (query) => NextResponse.redirect(new URL(query, origin), 303);
 
-  if (lockedOut(key)) return back('/?e=locked');
-  if (!password) return back('/?e=empty');
+  if (lockedOut(key)) return back('/login?e=locked');
+  if (!password) return back('/login?e=empty');
 
   if (!passwordMatches(password)) {
     fail(key);
-    return back('/?e=bad');
+    return back('/login?e=bad');
   }
 
   attempts.delete(key);

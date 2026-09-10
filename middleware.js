@@ -6,7 +6,7 @@ export function middleware(request) {
   const token = request.cookies.get('asc_session')?.value;
   if (!token || !token.includes('.')) {
     const url = request.nextUrl.clone();
-    url.pathname = '/';
+    url.pathname = '/login';
     url.searchParams.set('next', request.nextUrl.pathname);
     return NextResponse.redirect(url);
   }
