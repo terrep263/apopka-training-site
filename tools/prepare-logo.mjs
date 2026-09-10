@@ -43,16 +43,30 @@ await base.clone().resize({ width: 220, fit: 'inside' }).webp({ quality: 90 }).t
 console.log(`logo: ${width}x${height} -> crop ${box.width}x${box.height} -> public/logo.webp, public/logo-sm.webp`);
 
 // --- optional hero photograph ------------------------------------------
-// Drop any image at site/hero (or site/hero.jpg/.png/.webp). Absent = the
-// page falls back to a plain band, so a missing file never breaks the build.
+// Looks for the hero in a few likely spots so it does not matter whether the
+// file was dropped at the repo root or in site/, with or without an extension.
+// Absent = the page falls back to a single-column hero, never a broken image.
 import { readdir } from 'node:fs/promises';
 
+const HERO_NAMES = /^(hero|seniors|banner)(\.(jpe?g|png|webp|avif))?$/i;
+
+async function findHero() {
+  if (process.env.HERO_SRC) return process.env.HERO_SRC;
+  for (const dir of ['site', '.']) {
+    try {
+      const files = await readdir(dir);
+      const hit = files.find((f) => HERO_NAMES.test(f));
+      if (hit) return dir === '.' ? hit : `${dir}/${hit}`;
+    } catch {
+      /* directory missing — try the next one */
+    }
+  }
+  return null;
+}
+
 try {
-  const files = await readdir('site');
-  const hero = files.find((f) => /^hero(\.(jpe?g|png|webp|avif))?$/i.test(f));
-  if (hero) {
-    const src = `site/${hero}`;
-    // Portrait-ish crop for the split hero, plus a wide crop for the band.
+  const src = await findHero();
+  if (src) {
     await sharp(src)
       .resize({ width: 1200, height: 1400, fit: 'cover', position: 'attention' })
       .webp({ quality: 82 })
@@ -63,7 +77,7 @@ try {
       .toFile('public/hero-wide.webp');
     console.log(`hero: ${src} -> public/hero.webp + hero-wide.webp`);
   } else {
-    console.log('hero: no site/hero image found — band falls back to plain colour');
+    console.log('hero: none found — hero falls back to a single column');
   }
 } catch (err) {
   console.log('hero: skipped —', err.message);
