@@ -1,0 +1,8 @@
+node_modules
+.next
+.env
+.env.local
+
+# generated from site/ascgglogo at build time
+public/logo.webp
+public/logo-sm.webp
