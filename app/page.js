@@ -11,9 +11,9 @@ export const metadata = {
 
 const NAME = 'Apopka Senior Council for Good Governance';
 
-// The hero photograph is optional. If site/hero was never added, the split
-// collapses to a single column rather than showing a broken image.
-const hasHero = fs.existsSync(path.join(process.cwd(), 'public', 'hero.webp'));
+// The hero photograph is optional. If no image is in the repo, the band falls
+// back to plain navy rather than showing a broken image.
+const hasHero = fs.existsSync(path.join(process.cwd(), 'public', 'hero-wide.webp'));
 
 export default function Home() {
   return (
@@ -31,13 +31,17 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className={hasHero ? 'hero-split' : 'hero-split noshot'}>
-        <div className="words">
+      <section className={hasHero ? 'hero-band' : 'hero-band noshot'}>
+        {hasHero && (
+          <img className="bg" src="/hero-wide.webp" alt="" aria-hidden="true" />
+        )}
+        <div className="scrim" />
+        <div className="in">
           <Image
             src="/logo-sm.webp"
             alt={`${NAME} seal`}
-            width={74}
-            height={94}
+            width={120}
+            height={152}
             className="crest"
             priority
             unoptimized
@@ -56,11 +60,6 @@ export default function Home() {
             <Link href="#what-we-do" className="secondary">What we do</Link>
           </div>
         </div>
-        {hasHero && (
-          <div className="shot">
-            <img src="/hero.webp" alt="Members of the Apopka community" />
-          </div>
-        )}
       </section>
 
       <main className="home-main">
