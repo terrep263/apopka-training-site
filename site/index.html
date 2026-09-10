@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apopka Seniors for Good Governance — Volunteer Training</title>
+<style>
+:root{
+  --bg:#eff2ed; --surface:#fff; --ink:#16221c; --muted:#55655c;
+  --green:#2f5d45; --green-dark:#21422f; --green-soft:#e2ece5;
+  --brass:#8a6a1f; --brass-soft:#f6eeda;
+  --alert:#8c3a2b; --alert-soft:#fbeae6;
+  --rule:#d2dacd; --r:4px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Seravek","Gill Sans Nova",Ubuntu,Calibri,"DejaVu Sans",source-sans-pro,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--green-dark)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+.shell{display:grid;grid-template-columns:310px minmax(0,1fr);min-height:100vh}
+.sidebar{background:var(--green-dark);color:#e8efe9;padding:1.75rem 1.25rem 3rem}
+.brand{display:block;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1.1rem;margin-bottom:1.3rem}
+.brand b{display:block;font-size:1.12rem;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.brand span{display:block;font-size:.9rem;color:#a9c4b3;margin-top:.3rem}
+.navgroup{margin-bottom:1.3rem}
+.navgroup h3{font-size:.86rem;font-weight:600;color:#92b2a0;margin:0 0 .4rem}
+.navgroup ul{list-style:none;margin:0;padding:0}
+.navgroup a{display:block;padding:.42rem .6rem;color:#e2ebe5;text-decoration:none;border-radius:var(--r);border-left:3px solid transparent;font-size:1.01rem;line-height:1.4}
+.navgroup a:hover{background:rgba(255,255,255,.09)}
+.navgroup a.on{background:rgba(255,255,255,.14);border-left-color:var(--brass);font-weight:600;color:#fff}
+.dot{margin-right:.35rem}
+.dot.done{color:#9fd6b4}
+.dot.todo{color:#dfc27a}
+
+.main{padding:2.5rem 2.5rem 5rem}
+.wrap{max-width:68ch}
+.mobilebar{display:none}
+@media(max-width:880px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .sidebar.open{display:block}
+  .mobilebar{display:flex;align-items:center;justify-content:space-between;background:var(--green-dark);color:#fff;padding:.85rem 1.1rem;position:sticky;top:0;z-index:5}
+  .mobilebar b{font-size:1.05rem}
+  .mobilebar button{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:var(--r);font:inherit;padding:.5rem .9rem;min-height:44px}
+  .main{padding:1.5rem 1.15rem 4rem}
+}
+
+h1{font-size:2.125rem;line-height:1.15;letter-spacing:-.02em;font-weight:600;margin:0 0 .5rem}
+h2{font-size:1.625rem;line-height:1.25;font-weight:600;margin:2.4rem 0 .6rem;letter-spacing:-.01em}
+h3{font-size:1.3125rem;font-weight:600;margin:1.7rem 0 .4rem}
+p{margin:0 0 1rem}
+.eyebrow{color:var(--muted);margin:0 0 .35rem}
+.meta{color:var(--muted);font-size:.98rem;margin:0 0 2rem}
+.lede{font-size:1.3125rem;color:var(--muted);margin-bottom:1.6rem}
+ul,ol{padding-left:1.4rem;margin:0 0 1.2rem}
+li{margin-bottom:.5rem}
+
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:1.2rem 1.4rem;margin:0 0 1.2rem}
+.mission{margin:0 0 1.6rem;padding:1.4rem 1.6rem;background:var(--surface);border-left:5px solid var(--green);border-radius:var(--r);font-size:1.3125rem;line-height:1.55}
+.callout{background:var(--green-soft);border-left:5px solid var(--green);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.5rem 0}
+.warn{background:var(--alert-soft);border-left:5px solid var(--alert);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.5rem 0}
+.warn .t{font-weight:600;color:var(--alert);margin-bottom:.35rem}
+.hold{background:var(--brass-soft);border:2px dashed var(--brass);border-radius:var(--r);padding:1.2rem 1.35rem;margin:1.5rem 0}
+.hold .t{font-weight:600;color:var(--brass);margin-bottom:.35rem}
+.callout .t{font-weight:600;margin-bottom:.35rem}
+.callout p:last-child,.warn p:last-child,.hold p:last-child{margin-bottom:0}
+
+.say{background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--brass);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.3rem 0}
+.say .l{color:var(--brass);font-weight:600;font-size:.98rem;margin-bottom:.4rem}
+.say p{margin:0;font-size:1.3125rem;line-height:1.55}
+
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:1.15rem 1.3rem;overflow-x:auto;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.94rem;line-height:1.55;margin:1.2rem 0 1.6rem}
+
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:1.2rem 0 1.6rem;font-size:1.01rem}
+th{text-align:left;background:var(--green);color:#fff;font-weight:600;padding:.7rem .8rem;border:1px solid var(--green)}
+td{padding:.7rem .8rem;border:1px solid var(--rule);vertical-align:top;background:var(--surface)}
+tr:nth-child(even) td{background:#f8faf7}
+
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:1.2rem 0 1.6rem}
+ol.steps li{counter-increment:s;position:relative;padding-left:3.1rem;margin-bottom:1rem;min-height:2.2rem}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:600;font-size:1.01rem}
+ol.steps b{display:block}
+
+.scen{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:1.1rem 1.3rem;margin-bottom:1.1rem}
+.scen h4{margin:0 0 .6rem;font-size:1.3125rem}
+.scen .said{font-size:1.3125rem;line-height:1.5;border-left:4px solid var(--rule);padding-left:.9rem;margin:0 0 .75rem}
+.scen .prac{margin:0;color:var(--muted)}
+
+.hero{background:var(--surface);border:1px solid var(--rule);border-top:6px solid var(--green);border-radius:var(--r);padding:2rem 2.1rem;margin-bottom:2rem}
+.hero h1{font-size:2.6rem;margin-bottom:.75rem}
+@media(max-width:640px){.hero{padding:1.4rem 1.3rem}.hero h1{font-size:2rem}}
+.bar{height:12px;background:var(--green-soft);border-radius:999px;overflow:hidden;margin:.75rem 0 .4rem}
+.bar i{display:block;height:100%;background:var(--green)}
+
+.ghead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:2.2rem 0 .7rem;padding-bottom:.4rem;border-bottom:2px solid var(--rule)}
+.ghead h2{margin:0;font-size:1.3125rem}
+.ghead span{color:var(--muted);font-size:.98rem}
+.mods{list-style:none;margin:0;padding:0}
+.mods li{margin-bottom:.7rem}
+.modlink{display:block;background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--rule);border-radius:var(--r);padding:.95rem 1.15rem;text-decoration:none;color:var(--ink)}
+.modlink:hover{border-color:var(--green);border-left-color:var(--green)}
+.modlink.done{border-left-color:var(--green)}
+.modlink.hold{border-left-color:var(--brass);border-style:solid;border-width:1px;border-left-width:5px;background:var(--surface)}
+.modlink .top{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.modlink .ttl{font-weight:600;font-size:1.3125rem}
+.modlink .min{color:var(--muted);font-size:.95rem;white-space:nowrap}
+.modlink .sum{margin:.25rem 0 0;color:var(--muted)}
+.flag{display:inline-block;margin-top:.5rem;font-size:.9rem;font-weight:600;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:.15rem .5rem}
+.tick{display:inline-block;margin-top:.5rem;font-size:.9rem;font-weight:600;color:var(--green)}
+
+.btn{display:inline-block;font:inherit;font-weight:600;background:var(--green);color:#fff;border:1px solid var(--green);border-radius:var(--r);padding:.8rem 1.4rem;min-height:48px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--green-dark)}
+.btn.ghost{background:transparent;color:var(--green-dark)}
+.btn.ghost:hover{background:var(--green-soft)}
+.footnav{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:1.4rem;border-top:2px solid var(--rule);flex-wrap:wrap}
+
+.hidden{display:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .sidebar,.mobilebar,.footnav,.btn{display:none!important}
+  .shell{grid-template-columns:1fr}
+  body{background:#fff;font-size:12pt}
+  .wrap{max-width:none}
+  section{display:block!important;page-break-after:always}
+}
+</style>
+</head>
+<body>
+
+<div class="mobilebar">
+  <b>Volunteer training</b>
+  <button type="button" id="menubtn" aria-expanded="false" aria-controls="sidenav">Menu</button>
+</div>
+
+<div class="shell">
+<nav class="sidebar" id="sidenav" aria-label="Training sections">
+  <a class="brand" href="#home">
+    <b>Apopka Seniors for Good Governance</b>
+    <span>Volunteer training</span>
+  </a>
+  <div id="navlist"></div>
+  <div class="navgroup">
+    <h3>This site</h3>
+    <ul>
+      <li><a href="#home">All sections</a></li>
+      <li><a href="#" id="resetlink">Reset my progress</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main">
+<div class="wrap" id="content"></div>
+</main>
+</div>
+
+<script>
+/* ============================================================
+   CONTENT — Apopka Seniors for Good Governance, Plan v2.0
+   Edit here. Each section: id, group, title, summary, minutes,
+   optional hold:true (marks "not written yet"), and html body.
+   ============================================================ */
+const MISSION = "We are a volunteer effort by Apopka seniors. We read the public record, we tell people what it actually says, and we correct false claims with documents anyone can look up themselves. We operate independently, without compensation, and without connection to any campaign, party, or candidate.";
+
+const SECTIONS = [
+{
+id:"mission", group:"Orientation", title:"Our mission", minutes:15,
+summary:"The statement, why each phrase is a commitment, and the five-question check.",
+html:`
+<blockquote class="mission">${MISSION}</blockquote>
+
+<h2>Why this wording matters</h2>
+<p>Every phrase in that statement is a commitment we can be held to.</p>
+<ul>
+<li><b>&ldquo;We read the public record&rdquo;</b> &mdash; Our authority comes from documents, not opinions.</li>
+<li><b>&ldquo;What it actually says&rdquo;</b> &mdash; Including when the record is unflattering, incomplete, or ambiguous. We report what is there, not what we wish were there.</li>
+<li><b>&ldquo;Documents anyone can look up themselves&rdquo;</b> &mdash; Every claim must be independently verifiable by the person hearing it. We are not asking anyone to trust us.</li>
+<li><b>&ldquo;Independently, without compensation&rdquo;</b> &mdash; Nobody pays us and nobody directs us.</li>
+</ul>
+
+<h2>The mission check</h2>
+<p>Before any material is distributed or any public statement is made, five questions must be answered yes.</p>
+<ol>
+<li>Is every factual claim traceable to a primary source document?</li>
+<li>Is the source identified specifically enough that a stranger could retrieve it?</li>
+<li>Have two people verified it independently?</li>
+<li>Does it describe what the record says rather than what it means politically?</li>
+<li>Would we publish this same document if it cut the other way?</li>
+</ol>
+<div class="callout"><div class="t">If any answer is no, it does not go out.</div>
+<p>Any volunteer may call a mission check at any meeting, and the Record Director must answer it.</p></div>
+
+<h2>Mission drift prevention</h2>
+<ul>
+<li>The Record Director maintains the Verification Log &mdash; every published claim, its source, its two verifiers, and the date.</li>
+<li>The Overall Coordinator reviews all materials monthly against the five questions.</li>
+<li>The Verification Log is available to any volunteer who asks to see it.</li>
+</ul>
+`
+},
+{
+id:"what-we-are", group:"Orientation", title:"What we are and what we are not", minutes:15,
+summary:"The line between record and person, and the rule about unfavorable findings.",
+html:`
+<p>This section exists because the difference is what protects the group&rsquo;s credibility and its volunteers.</p>
+<div class="tscroll"><table>
+<thead><tr><th>We do</th><th>We do not</th></tr></thead>
+<tbody>
+<tr><td>Read and summarize public documents</td><td>Speculate about motives</td></tr>
+<tr><td>Correct specific false claims with specific sources</td><td>Argue about conclusions</td></tr>
+<tr><td>Say &ldquo;the record shows X&rdquo;</td><td>Say &ldquo;this proves Y about person Z&rdquo;</td></tr>
+<tr><td>Say &ldquo;we don&rsquo;t know&rdquo; when the record is silent</td><td>Fill gaps with inference</td></tr>
+<tr><td>Publish corrections when we get something wrong</td><td>Defend our own errors</td></tr>
+<tr><td>Educate anyone who asks, regardless of their views</td><td>Sort neighbors into supporters and opponents</td></tr>
+<tr><td>Attend public meetings as observers and commenters</td><td>Work with, for, or alongside any campaign</td></tr>
+</tbody></table></div>
+
+<h2>The unfavorable record rule</h2>
+<p>If the documented record contradicts something the group has said, or contradicts what a volunteer personally believes, <b>we say so.</b> We publish the correction with the same effort we published the original.</p>
+<p>This is not a nice-to-have. A group that only corrects other people&rsquo;s errors is a partisan operation with a research department. A group that corrects its own is a source. The second one is what we are building, and it is the only version of this that survives contact with a skeptical neighbor.</p>
+
+<h2>The person versus record line</h2>
+<p>We describe <b>actions in the record</b> &mdash; votes, filings, budget lines, statements made on the dais, correspondence in public files. We do not characterize <b>people</b>. &ldquo;The minutes for the March 4 meeting record a 4&ndash;1 vote&rdquo; is our lane. &ldquo;The commissioner is honest&rdquo; and &ldquo;the commissioner is corrupt&rdquo; are both outside it.</p>
+<div class="warn"><div class="t">This rule holds even when you are personally certain.</div>
+<p>Personal certainty is not a source.</p></div>
+`
+},
+{
+id:"verification", group:"Orientation", title:"The Record Verification Standard", minutes:35,
+summary:"Tier 1 and 2 sources, what is not a source, the two-person rule, and citation format.",
+html:`
+<p>Everything the group publishes runs through this standard. It is the core of the operation.</p>
+
+<h2>Tier 1 &mdash; acceptable primary sources</h2>
+<ul>
+<li>Meeting minutes, agendas, and official video or audio of public bodies</li>
+<li>Ordinances, resolutions, and adopted budgets</li>
+<li>Filed court documents and case dockets</li>
+<li>Public records obtained by request (Florida Chapter 119 request)</li>
+<li>Financial disclosures and filings on file with a government office</li>
+<li>Contracts, permits, and inspection records held by a public agency</li>
+<li>Direct, complete quotations from a public meeting, with timestamp</li>
+</ul>
+
+<h2>Tier 2 &mdash; usable with attribution</h2>
+<ul>
+<li>News reporting from an identified outlet, cited as reporting rather than as fact</li>
+<li>Official statements from an agency&rsquo;s own website or release</li>
+<li>Documents provided by a named person who will stand behind them</li>
+</ul>
+
+<h2>Not sources</h2>
+<ul>
+<li>Social media posts, screenshots, and forwarded messages</li>
+<li>&ldquo;Someone at the meeting told me&rdquo;</li>
+<li>Another advocacy group&rsquo;s summary</li>
+<li>Our own memory of a meeting we attended</li>
+<li>Anything a volunteer cannot produce on request</li>
+</ul>
+
+<h2>The two-person rule</h2>
+<p>No claim is published until two volunteers have each independently:</p>
+<ol class="steps">
+<li><b>Retrieved the source document themselves</b></li>
+<li><b>Confirmed the claim is supported by the document as written</b></li>
+<li><b>Confirmed the citation is specific enough for a stranger to find it</b></li>
+<li><b>Signed the Verification Log entry</b></li>
+</ol>
+
+<h2>Citation format</h2>
+<p>Every published fact carries a citation a neighbor can act on.</p>
+<div class="say"><div class="l">Like this</div>
+<p>City of Apopka, Regular City Council Meeting Minutes, March 4, 2026, Item 7B, page 4. Available at apopka.gov under Agendas &amp; Minutes, or by request at City Clerk&rsquo;s office.</p></div>
+<div class="warn"><div class="t">Not like this</div>
+<p>&ldquo;City records show&hellip;&rdquo; and &ldquo;According to public documents&hellip;&rdquo; are unverifiable, and they are what misinformation sounds like.</p></div>
+
+<h2>Handling ambiguity</h2>
+<p>When the record is genuinely unclear, we say exactly that, in writing.</p>
+<div class="say"><div class="l">For example</div>
+<p>The minutes record the vote but do not record the discussion. The audio recording for this session is not posted. We have requested it. We do not know what was said.</p></div>
+<p>&ldquo;We don&rsquo;t know yet&rdquo; published honestly builds more credibility than a confident guess ever will.</p>
+
+<h2>Our own corrections</h2>
+<ol class="steps">
+<li><b>Within 72 hours</b>The Record Director issues a written correction.</li>
+<li><b>Every channel</b>It goes out through every channel the original went out through.</li>
+<li><b>Stated plainly</b>&ldquo;We got this wrong. Here is what the record actually says.&rdquo;</li>
+<li><b>Logged</b>The Verification Log records what failed and why.</li>
+</ol>
+`
+},
+{
+id:"structure", group:"Orientation", title:"How we are organized", minutes:10,
+summary:"Ten teams of three, the five coordination roles, and the meeting rhythm.",
+html:`
+<div class="tscroll"><table>
+<thead><tr><th>Role</th><th>Responsibilities</th><th>Traits to look for</th></tr></thead>
+<tbody>
+<tr><td><b>Team Lead</b></td><td>Scheduling, coordination, reporting, team support</td><td>Organized, reliable, steady</td></tr>
+<tr><td><b>Educator</b></td><td>Conversations, presentations, answering questions</td><td>Patient, good listener, comfortable saying &ldquo;let me look that up&rdquo;</td></tr>
+<tr><td><b>Recorder</b></td><td>Logging claims heard, questions asked, follow-ups owed</td><td>Detail-oriented, consistent</td></tr>
+</tbody></table></div>
+
+<div class="callout"><div class="t">A note on the Educator role</div>
+<p>We deliberately do not want persuasive people in this seat. Persuasion is a different job than education, and it is the job that gets this kind of group dismissed. We want people who can hand someone a document and let it do the work.</p></div>
+
+<p>Roles are flexible in practice &mdash; the Recorder can talk, the Educator can log &mdash; but each function must be covered.</p>
+
+<h2>The five coordination roles</h2>
+<ul>
+<li><b>Overall Coordinator</b> &mdash; oversees the effort, makes final calls, represents the group externally, obtains the legal and records guidance. Weekly: review team reports, coordination meeting. Monthly: budget, progress, materials review, volunteer recognition.</li>
+<li><b>Record Director</b> &mdash; owns the Verification Standard, the Verification Log, all findings, and all published materials. Runs rapid response. Issues corrections. Weekly: new claims, document requests, verification queue. Monthly: Fact Sheet reissue, materials audit.</li>
+<li><b>Training Lead</b> &mdash; delivers initial and refresher training, develops materials, addresses skill gaps. Weekly: check in with new volunteers. Monthly: refresher session.</li>
+<li><b>Data Manager</b> &mdash; compiles claim logs, maintains the opt-in contact list, tracks metrics. Weekly: collect reports, update tallies. Monthly: report to coordination team.</li>
+<li><b>Resource Coordinator</b> &mdash; materials, expenses, logistics, meeting spaces. Weekly: expenses and supplies. Monthly: budget report.</li>
+</ul>
+
+<h2>Meetings</h2>
+<div class="tscroll"><table>
+<thead><tr><th>Meeting</th><th>Frequency</th><th>Length</th><th>Attendees</th></tr></thead>
+<tbody>
+<tr><td>Team check-in</td><td>Weekly</td><td>15 min</td><td>Each team</td></tr>
+<tr><td>Coordination team</td><td>Weekly</td><td>30 min</td><td>Five role holders</td></tr>
+<tr><td>Team Lead meeting</td><td>Bi-weekly</td><td>45 min</td><td>All Team Leads + Coordinator</td></tr>
+<tr><td>All-volunteer</td><td>Quarterly</td><td>90 min</td><td>Everyone</td></tr>
+</tbody></table></div>
+
+<h2>Weekly team check-in &mdash; 15 minutes</h2>
+<div class="tscroll"><table>
+<thead><tr><th>Time</th><th>Item</th></tr></thead>
+<tbody>
+<tr><td>0:00&ndash;0:02</td><td>What went well</td></tr>
+<tr><td>0:02&ndash;0:07</td><td>Conversations: how many, what claims came up</td></tr>
+<tr><td>0:07&ndash;0:10</td><td>Questions we couldn&rsquo;t answer</td></tr>
+<tr><td>0:10&ndash;0:15</td><td>Next week: who does what</td></tr>
+</tbody></table></div>
+
+<h2>Monthly team health check</h2>
+<p>Due to the Overall Coordinator by the 1st of each month.</p>
+<ul>
+<li>All three members active</li>
+<li>Communication flowing</li>
+<li>Claims and questions being logged</li>
+<li>Conflicts addressed</li>
+<li>Resource needs</li>
+<li>Training needs</li>
+</ul>
+
+<h2>Communication norms</h2>
+<ul>
+<li>Urgent: call or text</li>
+<li>Routine: email</li>
+<li>Response expectation: 24 hours</li>
+<li>New claims: same day to Team Lead</li>
+</ul>
+`
+},
+{
+id:"conversation", group:"Core training", title:"How to have the conversation", minutes:30,
+summary:"The four steps, why you never argue, and what to say when you don't know.",
+html:`
+<h2>The four-step conversation</h2>
+<ol class="steps">
+<li><b>Ask</b>&ldquo;What have you heard about it?&rdquo;</li>
+<li><b>Listen</b>All the way to the end. Do not correct mid-sentence.</li>
+<li><b>Locate</b>&ldquo;I&rsquo;ve got the document on that. Want to see it?&rdquo;</li>
+<li><b>Hand off</b>Give them the citation so they can check it themselves.</li>
+</ol>
+
+<h2>Never argue</h2>
+<p>If someone rejects the document, the conversation is over and it ended well.</p>
+<div class="say"><div class="l">Say this, then stop</div>
+<p>It&rsquo;s a public record, so it&rsquo;ll be there if you ever want to look. Good talking with you.</p></div>
+<p>A neighbor who walks away irritated will tell ten people. A neighbor who walks away holding a citation will look it up that night.</p>
+
+<h2>&ldquo;I don&rsquo;t know&rdquo; is a complete answer</h2>
+<p>Followed by: &ldquo;I&rsquo;ll find out and get back to you.&rdquo; Then actually do it. This single habit does more for the group&rsquo;s credibility than any fact sheet.</p>
+
+<h2>When the record is unfavorable to what we&rsquo;d prefer</h2>
+<p>Say it plainly.</p>
+<div class="say"><div class="l">Say this</div>
+<p>You&rsquo;re right about that part &mdash; here&rsquo;s the document.</p></div>
+<p>Volunteers who see this modeled in training will do it in the field.</p>
+`
+},
+{
+id:"scenarios", group:"Core training", title:"Role-play scenarios", minutes:20,
+summary:"Seven conversations, including the two everyone gets wrong.",
+html:`
+<div class="scen"><h4>1 &mdash; The skeptic</h4>
+<p class="said">Every group like this has an angle.</p>
+<p class="prac">Agree that it&rsquo;s a fair concern. Don&rsquo;t defend the group &mdash; hand over a citation and say &ldquo;that&rsquo;s why every single thing on here tells you where to look it up yourself.&rdquo;</p></div>
+
+<div class="scen"><h4>2 &mdash; The confident misinformer</h4>
+<p class="said">I know for a fact that [claim].</p>
+<p class="prac">&ldquo;Where did you come across it?&rdquo; Listen. &ldquo;I&rsquo;ve got the document on that one &mdash; want to see it?&rdquo; Show the page. Do not say &ldquo;that&rsquo;s false.&rdquo; Let the document be the one that disagrees.</p></div>
+
+<div class="scen"><h4>3 &mdash; The neighbor who is right</h4>
+<p class="said">Makes a claim the record supports.</p>
+<p class="prac">&ldquo;You&rsquo;re right, and here&rsquo;s the document that backs you up.&rdquo; Then hand them the citation. This scenario is mandatory in every training.</p></div>
+
+<div class="scen"><h4>4 &mdash; The question we can&rsquo;t answer</h4>
+<p class="said">What about [something not in our materials]?</p>
+<p class="prac">&ldquo;I don&rsquo;t know. I&rsquo;ll find the record and get back to you.&rdquo; Get contact information only if they want the answer. Log it. Actually follow up.</p></div>
+
+<div class="scen"><h4>5 &mdash; The angry neighbor</h4>
+<p class="said">I don&rsquo;t want to hear it.</p>
+<p class="prac">&ldquo;Fair enough. The sheet&rsquo;s here if you ever want it. Good talking with you.&rdquo; Walk away pleasantly. This is a successful outcome.</p></div>
+
+<div class="scen"><h4>6 &mdash; The record cuts against us</h4>
+<p class="said">A neighbor produces a document contradicting something the group published.</p>
+<p class="prac">&ldquo;Let me see that. If we&rsquo;ve got it wrong, we&rsquo;ll publish a correction &mdash; can I take a picture of it?&rdquo; Report to the Record Director the same day.</p></div>
+
+<div class="scen"><h4>7 &mdash; The person question</h4>
+<p class="said">So do you think the commissioner is crooked or not?</p>
+<p class="prac">&ldquo;That&rsquo;s not what we do. We can tell you what the votes and the minutes say, and you can decide. Want the sheet?&rdquo;</p></div>
+`
+},
+{
+id:"logging", group:"Core training", title:"Logging claims and questions", minutes:20,
+summary:"What gets recorded, what never does, and why the log is a work queue.",
+html:`
+<div class="callout"><div class="t">We track claims and questions. Not people.</div>
+<p>The log&rsquo;s only purpose is to tell us which false claims are circulating and which documents we need next.</p></div>
+
+<h2>Record</h2>
+<ul>
+<li>Date and setting</li>
+<li>Channel: personal network, invited presentation, community event, public meeting, or office hours</li>
+<li>The specific claim heard, verbatim</li>
+<li>Questions asked that we could not answer</li>
+<li>Whether we owe a follow-up, and to what &mdash; not to whom, unless they asked for it and gave contact information</li>
+</ul>
+
+<h2>Do not record</h2>
+<ul>
+<li>Names</li>
+<li>Addresses</li>
+<li>Phone numbers</li>
+<li>Political leanings</li>
+<li>Any assessment of the person</li>
+<li>Anything that would make the log uncomfortable to hand to the person it describes</li>
+</ul>
+
+<h2>The contact list</h2>
+<p>Only people who <b>asked</b> to receive updates, from a sign-up sheet, with their consent. It holds name, preferred contact method, and date of sign-up. Nothing else. No notes about their views. It is used only to send the materials they asked for, and every message includes a way to be removed.</p>
+<p>It is stored in one password-protected file held by the Data Manager and is not copied or shared.</p>
+
+<h2>What the data is for</h2>
+<p>Unanswered questions become the next documents we pull. Frequently heard claims become the next Fact Sheet entries. That is the entire purpose of the log &mdash; it is a work queue, not a voter file.</p>
+`
+},
+{
+id:"conduct", group:"Core training", title:"Boundaries, conduct, and safety", minutes:15,
+summary:"Independence, the conduct rules, personal safety, and records retention.",
+html:`
+<h2>Independence</h2>
+<ul>
+<li>No coordination, communication, or joint activity with any campaign, candidate, party, or political committee</li>
+<li>No endorsements of any kind</li>
+<li>No group contributions to anyone</li>
+<li>Volunteers&rsquo; personal political activity is their own business, done on their own time, without group materials, and never described as the group&rsquo;s position</li>
+</ul>
+
+<h2>Conduct</h2>
+<ul>
+<li>Never enter private property without invitation</li>
+<li>Never continue a conversation after being asked to stop</li>
+<li>Never raise your voice, and never respond to hostility with hostility</li>
+<li>Never record anyone without their knowledge</li>
+<li>Never share anything from the contact list</li>
+<li>Never claim to represent anyone other than this group</li>
+</ul>
+
+<h2>Personal safety</h2>
+<ul>
+<li>Meet new contacts in public places</li>
+<li>Tell someone where you are going</li>
+<li>Carry a charged phone</li>
+<li>Attend events in pairs</li>
+<li>Leave immediately if you feel unsafe &mdash; no exceptions, no discussion</li>
+<li>Report any concerning incident to your Team Lead the same day</li>
+</ul>
+
+<h2>If approached by authorities</h2>
+<p>Be polite. Identify yourself as a volunteer. Give them the Overall Coordinator&rsquo;s contact information. Do not argue.</p>
+
+<h2>Records requests</h2>
+<p>Florida&rsquo;s public records law (Chapter 119, Florida Statutes) provides broad public access to government records. Requests may be made in writing or verbally, and no reason need be given.</p>
+<p>Before the group makes its first request, the Overall Coordinator obtains current written guidance on request procedures, fees, and response expectations directly from the relevant records custodian &mdash; the City Clerk, County Clerk, or agency records office. Procedures and fee schedules vary by agency and change; we follow the current written guidance from the agency itself rather than assumptions.</p>
+
+<h2>Registration and reporting</h2>
+<div class="warn"><div class="t">Do not guess at this.</div>
+<p>Whether an organized group that spends money on public communications has any registration or reporting obligation depends on what it does, what it spends, and when. Before the group spends money on any public-facing communication, the Overall Coordinator obtains a written answer from a Florida attorney or from the Florida Division of Elections. That written answer, not this site, governs. It is filed with the group&rsquo;s records and reviewed if the group&rsquo;s activity changes. Do not rely on what a similar group elsewhere does.</p></div>
+
+<h2>Records retention</h2>
+<p>Claim logs and verification records are retained through the life of the effort and are the group&rsquo;s institutional memory &mdash; they document that we did the work correctly. The contact list is deleted when the effort ends or when a person asks to be removed, whichever comes first.</p>
+`
+},
+{
+id:"phase-1", group:"Phase 1 · Weeks 1–2", title:"Foundation: building the teams", minutes:20,
+summary:"Recruiting Team Leads, assembling teams, and the 2.5-hour training agenda.",
+html:`
+<h2>Step 1 &mdash; identify Team Leads (Days 1&ndash;3)</h2>
+<p><i>Who to approach:</i> retired professionals with coordination experience, active members of faith or civic groups, people known for follow-through, people who already host gatherings.</p>
+<ol class="steps">
+<li><b>One-on-one</b>In person or by phone, 30 minutes.</li>
+<li><b>Share</b>The mission statement and this plan.</li>
+<li><b>Describe the role</b>Coordinate two other people, set your team&rsquo;s schedule, be the contact point, report weekly.</li>
+<li><b>Ask directly</b>&ldquo;Would you be willing to lead a team of three?&rdquo;</li>
+<li><b>If yes</b>Provide the Team Lead Handbook and schedule training.</li>
+<li><b>If no</b>Ask for a referral.</li>
+</ol>
+
+<h2>Answering the common objections</h2>
+<div class="scen"><p class="said">I don&rsquo;t have time.</p>
+<p class="prac">&ldquo;One to two hours a week. You set the schedule.&rdquo;</p></div>
+<div class="scen"><p class="said">I&rsquo;m not political.</p>
+<p class="prac">&ldquo;Neither is this. We read documents and tell people what they say. If you can look up a meeting agenda, you can do this.&rdquo;</p></div>
+<div class="scen"><p class="said">I don&rsquo;t know enough.</p>
+<p class="prac">&ldquo;Nobody starts knowing. The job is looking things up, not knowing them already.&rdquo;</p></div>
+<div class="scen"><p class="said">What if someone asks me something I can&rsquo;t answer?</p>
+<p class="prac">&ldquo;You say &lsquo;I don&rsquo;t know, let me find out.&rsquo; That is the correct answer and we train people to use it.&rdquo;</p></div>
+
+<h2>Step 2 &mdash; assemble teams (Days 4&ndash;7)</h2>
+<p>Each Team Lead recruits two members from their own network, looking for complementary strengths. Report names, roles, and contact preferences to the Overall Coordinator.</p>
+
+<h2>Step 3 &mdash; establish team communication (Week 2, Day 1)</h2>
+<p>Group text, weekly call, or email thread &mdash; Team Lead&rsquo;s choice. Test with all three members. Set a 24-hour response expectation.</p>
+
+<h2>Training</h2>
+<p><b>Location options:</b> Apopka Community Center, church fellowship hall, library meeting room, private home.</p>
+<p><b>Materials per volunteer:</b> mission card, Record Verification Standard card, Fact Sheet, Claim Response card, Claim Log forms, conduct card, name tag.</p>
+<div class="tscroll"><table>
+<thead><tr><th>Time</th><th>Module</th><th>Lead</th></tr></thead>
+<tbody>
+<tr><td>0:00&ndash;0:10</td><td>Welcome and introductions</td><td>Overall Coordinator</td></tr>
+<tr><td>0:10&ndash;0:25</td><td>Mission: what we are and are not</td><td>Overall Coordinator</td></tr>
+<tr><td>0:25&ndash;1:00</td><td>The Record Verification Standard</td><td>Record Director</td></tr>
+<tr><td>1:00&ndash;1:30</td><td>How to have the conversation</td><td>Training Lead</td></tr>
+<tr><td>1:30&ndash;1:50</td><td>Logging claims and questions</td><td>Data Manager</td></tr>
+<tr><td>1:50&ndash;2:05</td><td>Boundaries and conduct</td><td>Training Lead</td></tr>
+<tr><td>2:05&ndash;2:25</td><td>Role-play</td><td>All</td></tr>
+<tr><td>2:25&ndash;2:30</td><td>Next steps</td><td>Overall Coordinator</td></tr>
+</tbody></table></div>
+
+<div class="callout"><div class="t">The single most important minute of the training</div>
+<p>In Module 1, volunteers explain the mission to each other in their own words. Listen for anyone who describes it as defending or opposing someone. Correct it on the spot, kindly.</p></div>
+
+<p>In Module 2, each volunteer looks up one public document and writes a proper citation for it. Anyone who cannot produce a retrievable citation gets help before leaving. In Module 3, the role-play must include at minimum one scenario where the neighbor is correct and the volunteer must concede.</p>
+`
+},
+{
+id:"phase-2", group:"Phase 2 · Weeks 3–5", title:"Record assembly", minutes:25,
+summary:"Nothing goes public until the documents are in hand. The four findings and only four.",
+html:`
+<div class="callout"><div class="t">This phase is the reason the group can be trusted later.</div>
+<p>Nothing goes public until the documents are in hand.</p></div>
+
+<h2>Step 1 &mdash; identify the claims in circulation</h2>
+<ol class="steps">
+<li><b>Collect</b>Every specific claim volunteers have personally heard, in the words they heard it.</li>
+<li><b>Write verbatim</b>Do not paraphrase into something more reasonable.</li>
+<li><b>Group duplicates</b></li>
+<li><b>Rank</b>By how often each is heard.</li>
+</ol>
+<p>The claim as it actually circulates is the one that needs answering. A cleaned-up version answers nothing.</p>
+
+<h2>Step 2 &mdash; pull the documents</h2>
+<ol class="steps">
+<li><b>Identify</b>Which public record would confirm or refute it.</li>
+<li><b>Retrieve</b>Agency website, clerk&rsquo;s office, or Chapter 119 public records request.</li>
+<li><b>Log</b>The request date, if it is outstanding.</li>
+<li><b>Read the whole document</b>Not the part that helps.</li>
+</ol>
+
+<h2>Step 3 &mdash; write the finding</h2>
+<p>For each claim, one of four findings &mdash; and only these four.</p>
+<div class="tscroll"><table>
+<thead><tr><th>Finding</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><b>Supported</b></td><td>The record confirms the claim. We say so.</td></tr>
+<tr><td><b>Contradicted</b></td><td>The record shows something different. We show what.</td></tr>
+<tr><td><b>Partially accurate</b></td><td>Part is right, part is not. We separate them.</td></tr>
+<tr><td><b>Not established</b></td><td>The record does not address it, or is not yet available. We say that and say what we&rsquo;ve requested.</td></tr>
+</tbody></table></div>
+<div class="warn"><div class="t">There is no fifth category.</div>
+<p>There is no &ldquo;technically true but misleading.&rdquo; If we find ourselves reaching for one, the answer is Supported plus additional documented context &mdash; clearly labeled as additional context, not as rebuttal.</p></div>
+
+<h2>Step 4 &mdash; two-person verification</h2>
+<p>Every finding is independently verified per the two-person rule before it enters any material. Log it.</p>
+
+<h2>Step 5 &mdash; build the materials</h2>
+<p><b>The Fact Sheet</b> &mdash; one page, front and back if needed. Header: group name, &ldquo;What the Record Shows,&rdquo; and the date. Each entry: the claim as circulated, the finding, the citation. Footer: mission statement, how to reach us, and how to look these up independently.</p>
+<p><b>The Claim Response Card</b> &mdash; wallet size, for volunteers. Claim, finding, citation, and the exact sentence to say.</p>
+<p><b>The Source Binder</b> &mdash; one per team. Printed copies of every cited document, tabbed and indexed. The Educator carries it to presentations. Handing someone the actual page ends most arguments in a way no summary can.</p>
+`
+},
+{
+id:"phase-3", group:"Phase 3 · Weeks 6–14", title:"Public education", minutes:25,
+summary:"Where we work and where we don't. Personal networks, invited presentations, community presence.",
+html:`
+<div class="callout"><div class="t">Where we work</div>
+<p>We go where we are invited or where the public is already gathered for civic purposes. We do not approach strangers in parking lots, and we do not go door to door. That distinction is what keeps this recognizable as education rather than canvassing, and it protects volunteers.</p></div>
+
+<h2>Tier 1 &mdash; personal networks</h2>
+<ol class="steps">
+<li><b>Start</b>With people you already talk to regularly.</li>
+<li><b>Reach out individually</b>No mass texts, no blast emails.</li>
+<li><b>Use the four-step conversation</b></li>
+<li><b>Leave them with</b>The Fact Sheet and the citations.</li>
+<li><b>Log</b>The claims you heard, not the person you heard them from.</li>
+</ol>
+<div class="say"><div class="l">The opener</div>
+<p>I&rsquo;ve joined a group of Apopka seniors who look up public records on local issues. There&rsquo;s a lot going around that isn&rsquo;t accurate and a fair amount that is. We just read the documents and pass them along. Want a copy?</p></div>
+
+<h2>Tier 2 &mdash; organizations and invited presentations</h2>
+<p>List organizations where a team member is already a member &mdash; faith communities, civic clubs, HOAs, senior groups, book clubs. Contact the program chair and request 10 minutes. Practice as a team. Bring Fact Sheets for everyone, the Source Binder, and a sign-up sheet.</p>
+<div class="say"><div class="l">The request</div>
+<p>I&rsquo;m a member here, and I&rsquo;m also part of a group of Apopka seniors that looks up the public record on local issues and shares what we find. Could I have ten minutes at an upcoming meeting? I&rsquo;ll bring the documents.</p></div>
+<h3>The 10-minute presentation</h3>
+<ol class="steps">
+<li><b>1 min</b>Who we are and the one-sentence mission.</li>
+<li><b>2 min</b>Our standard: primary sources only, two-person verification, citations on everything.</li>
+<li><b>5 min</b>Three claims and what the record shows &mdash; including at least one where the record supports the claim.</li>
+<li><b>1 min</b>&ldquo;Every citation is on the sheet. Don&rsquo;t take my word for any of it &mdash; look them up.&rdquo;</li>
+<li><b>1 min or as long as they want</b>Questions.</li>
+</ol>
+<p>Follow up with everyone who signed up within 48 hours. Send a written thank-you to the organization.</p>
+
+<h2>Tier 3 &mdash; community presence</h2>
+<h3>Informational tables at community events</h3>
+<ol>
+<li>Register properly with event organizers in advance</li>
+<li>Two volunteers per two-hour shift</li>
+<li>Table setup: sign with group name, Fact Sheets, sign-up sheet, Source Binder open on the table</li>
+<li>Engage people who stop. Greet people who pass. Do not follow anyone.</li>
+</ol>
+<div class="say"><div class="l">Table opener</div>
+<p>We&rsquo;re a group of local seniors who look up public records. Anything you&rsquo;ve been hearing about that you&rsquo;d like to see the documents on?</p></div>
+
+<h3>Public meetings</h3>
+<ol>
+<li>Attend as observers; sit together</li>
+<li>Take notes on what is actually said, with timestamps, for the record</li>
+<li>Any volunteer may speak in public comment. If speaking: state facts and citations only, keep it under the time limit, thank the body, sit down.</li>
+<li>Debrief afterward and log anything that needs a document pulled</li>
+</ol>
+
+<h3>Standing office hours</h3>
+<p>Reserve a room at the Community Center or library for a recurring two-hour block. Advertise it as &ldquo;Bring us a question, we&rsquo;ll find the record.&rdquo; This is a low-cost, high-credibility format and it puts the burden of initiation on the person who actually wants information.</p>
+`
+},
+{
+id:"phase-4", group:"Phase 4 · Weeks 15–20", title:"Reach and reinforcement",  minutes:20,
+summary:"Fact cards, the Facebook posting rules, letters to the editor, and rapid response.",
+html:`
+<h2>Written materials</h2>
+<p><b>Shareable fact cards</b> &mdash; business-card size, one finding per card, citation on the back. Cheap to print, easy to hand over, and the citation makes them self-verifying.</p>
+<p><b>Digital fact sheet</b> &mdash; a PDF of the current Fact Sheet, dated and versioned, that anyone can forward. Every version keeps its date so nobody circulates an outdated one as current.</p>
+
+<h2>Online presence</h2>
+<p>A single Facebook page, maintained by the Record Director.</p>
+<div class="callout"><div class="t">Posting rules &mdash; no exceptions</div>
+<ol style="margin-bottom:0">
+<li>Every post contains a citation</li>
+<li>No post characterizes a person</li>
+<li>No arguing in comments &mdash; respond once with the document, then stop</li>
+<li>Corrections are posted as their own post, not edited quietly into the original</li>
+<li>Nothing gets posted that has not cleared two-person verification</li>
+</ol></div>
+<p><b>Cadence:</b> two to three posts a week. One document per post. &ldquo;Here&rsquo;s what the March 4 minutes actually say&rdquo; is the entire format.</p>
+
+<h2>Letters to the editor</h2>
+<p>Provide volunteers a template, but every letter must cite specific documents, describe the record rather than people, be reviewed by the Record Director before submission, and be submitted by the volunteer in their own name, as their own view.</p>
+
+<h2>Rapid response</h2>
+<ol class="steps">
+<li><b>Same day</b>Any volunteer reports a new false claim to their Team Lead, in the words it was heard.</li>
+<li><b>Forward</b>Team Lead forwards to the Record Director.</li>
+<li><b>Pull</b>Record Director identifies and pulls the relevant document.</li>
+<li><b>Verify</b>Two-person verification.</li>
+<li><b>Within 72 hours</b>Finding distributed to all teams.</li>
+</ol>
+<div class="callout"><div class="t">72 hours with a document beats 6 hours with a guess.</div>
+<p>If the document is not yet in hand, what goes out is: &ldquo;We&rsquo;ve heard this. We&rsquo;ve requested the records. We&rsquo;ll publish what they say.&rdquo; That holds the ground honestly.</p></div>
+`
+},
+{
+id:"ongoing", group:"Operations", title:"Ongoing operations and metrics", minutes:10,
+summary:"The maintenance rhythm after week 20, and what we measure.",
+html:`
+<p>After Week 20 the effort shifts to a maintenance rhythm rather than ending.</p>
+<div class="tscroll"><table>
+<thead><tr><th>Frequency</th><th>Activity</th></tr></thead>
+<tbody>
+<tr><td>Weekly</td><td>Team check-ins; claim log collection</td></tr>
+<tr><td>Bi-weekly</td><td>Team Lead meeting</td></tr>
+<tr><td>Monthly</td><td>Fact Sheet review and reissue if the record has changed; team health checks; budget review</td></tr>
+<tr><td>Quarterly</td><td>Full materials audit against the Verification Log; refresher training; volunteer survey</td></tr>
+<tr><td>As needed</td><td>Rapid response; new-volunteer onboarding</td></tr>
+</tbody></table></div>
+<p>The Fact Sheet is a living document. Every reissue is dated and the prior version is retired.</p>
+
+<h2>What we measure</h2>
+<p>We measure whether accurate, sourced information reached people. We do not measure persuasion, and we do not measure outcomes we cannot attribute.</p>
+<div class="tscroll"><table>
+<thead><tr><th>Metric</th><th>Owner</th><th>Cadence</th></tr></thead>
+<tbody>
+<tr><td>Conversations by channel</td><td>Data Manager</td><td>Weekly</td></tr>
+<tr><td>Distinct claims logged</td><td>Data Manager</td><td>Weekly</td></tr>
+<tr><td>Claims with a verified finding published</td><td>Record Director</td><td>Monthly</td></tr>
+<tr><td>Unanswered questions resolved into documents</td><td>Record Director</td><td>Monthly</td></tr>
+<tr><td>Presentations delivered and organizations reached</td><td>Data Manager</td><td>Monthly</td></tr>
+<tr><td>Materials distributed</td><td>Resource Coordinator</td><td>Monthly</td></tr>
+<tr><td>Requests for updates (opt-ins)</td><td>Data Manager</td><td>Monthly</td></tr>
+<tr><td>Corrections we issued on our own work</td><td>Record Director</td><td>Monthly</td></tr>
+<tr><td>Median time from new claim to published finding</td><td>Record Director</td><td>Monthly</td></tr>
+<tr><td>Volunteer retention</td><td>Overall Coordinator</td><td>Monthly</td></tr>
+</tbody></table></div>
+<div class="callout"><div class="t">The correction count is a health indicator, not a failure count.</div>
+<p>A group that never corrects itself is either not checking or not admitting. Report it plainly.</p></div>
+
+<h2>Budget</h2>
+<p>The group operates on donated and minimal funds. Printing, room reservations, and supplies are the only expected costs. The Resource Coordinator maintains a simple expense sheet &mdash; date, item, cost, category, running total &mdash; updated weekly, reported monthly.</p>
+<ul>
+<li>Free meeting spaces: library, community center, church halls</li>
+<li>Digital distribution wherever the recipient prefers it</li>
+<li>Print only what is handed to someone in person</li>
+<li>Public records: fee waivers and inspection-in-person can avoid copy charges; ask the records custodian what is available before paying for copies</li>
+</ul>
+<p>In-kind contributions &mdash; printing, space, refreshments &mdash; are tracked with an estimated value and acknowledged in writing.</p>
+<p><b>No volunteer spends personal money expecting reimbursement without prior approval from the Resource Coordinator.</b></p>
+`
+},
+{
+id:"forms", group:"Resources", title:"Forms", minutes:5,
+summary:"Claim Log and Weekly Team Report. Print and carry.",
+html:`
+<h2>Claim Log</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+Claim Log
+
+Volunteer: _______________________  Team: __________
+Date: _______________  Setting: _______________________
+
+Channel:
+[ ] Personal network   [ ] Invited presentation
+[ ] Community event    [ ] Public meeting
+[ ] Office hours       [ ] Other: _______________
+
+CLAIM(S) HEARD — write them exactly as you heard them:
+_________________________________________________
+_________________________________________________
+_________________________________________________
+
+QUESTIONS I COULD NOT ANSWER:
+_________________________________________________
+_________________________________________________
+
+FOLLOW-UP OWED?  [ ] No  [ ] Yes — what document is needed:
+_________________________________________________
+
+Did they ask to receive updates?  [ ] No  [ ] Yes — sign-up sheet completed
+
+DO NOT RECORD: names, addresses, phone numbers, political leanings,
+or any assessment of the person. We track claims, not people.</pre>
+
+<h2>Weekly Team Report</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+Weekly Team Report
+
+Team: _______  Team Lead: _______________  Week ending: __________
+
+CONVERSATIONS BY CHANNEL:
+Personal network: ____   Invited presentation: ____
+Community event: ____    Public meeting: ____
+Office hours: ____       Total: ____
+
+CLAIMS HEARD THIS WEEK (verbatim, with count):
+1. _______________________________________  (heard ___ times)
+2. _______________________________________  (heard ___ times)
+3. _______________________________________  (heard ___ times)
+
+NEW CLAIMS NOT PREVIOUSLY LOGGED:
+_________________________________________________
+
+QUESTIONS WE COULD NOT ANSWER:
+1. _________________________________________________
+2. _________________________________________________
+
+DOCUMENTS WE NEED:
+_________________________________________________
+
+CORRECTIONS NEEDED TO OUR OWN MATERIALS:
+_________________________________________________
+
+MATERIALS NEEDED:
+_________________________________________________
+
+CHALLENGES / SUCCESSES:
+_________________________________________________</pre>
+
+<h2>Verification Log</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+Verification Log
+
+Entry #: _______  Date: _______________
+
+CLAIM AS CIRCULATED:
+_________________________________________________
+
+SOURCE DOCUMENT:
+Agency: _______________________
+Document: _______________________
+Date: _______________  Item/Page: _______________
+How obtained: [ ] Website [ ] Clerk's office
+              [ ] Records request (dated ______) [ ] Other
+
+FINDING: [ ] Supported  [ ] Contradicted
+         [ ] Partially accurate  [ ] Not established
+
+FINDING AS WRITTEN FOR PUBLICATION:
+_________________________________________________
+_________________________________________________
+
+VERIFIER 1: _______________  Date: ______
+Retrieved the document independently?  [ ] Yes
+Confirms the finding as written?       [ ] Yes
+Citation is retrievable by a stranger? [ ] Yes
+
+VERIFIER 2: _______________  Date: ______
+Retrieved the document independently?  [ ] Yes
+Confirms the finding as written?       [ ] Yes
+Citation is retrievable by a stranger? [ ] Yes
+
+PUBLISHED IN: _______________  Date: ______
+
+CORRECTIONS ISSUED: _______________________</pre>
+`
+},
+{
+id:"cards", group:"Resources", title:"Pocket cards", minutes:5,
+summary:"Conduct and safety card, and the Claim Response card template.",
+html:`
+<h2>Conduct and Safety Card</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+Conduct and Safety
+
+WE DO:
+✓ Cite a primary source for every claim
+✓ Say "I don't know" and then find out
+✓ Say so when the record supports the other person
+✓ Correct our own errors within 72 hours
+✓ Attend public meetings and speak factually
+✓ Educate anyone who asks
+
+WE DO NOT:
+✗ Coordinate with any campaign, candidate, or party
+✗ Endorse anyone
+✗ Characterize people — only the record
+✗ Argue, push, or follow anyone
+✗ Go door to door or approach strangers
+✗ Record anyone without their knowledge
+✗ Log names or political leanings
+✗ Cite anything we can't produce on request
+
+SAFETY:
+• Meet new contacts in public
+• Tell someone where you're going
+• Carry a charged phone
+• Attend events in pairs
+• If you feel unsafe, leave immediately
+• Report incidents to your Team Lead same day
+
+IF APPROACHED BY AUTHORITIES:
+Be polite. Identify yourself as a volunteer. Give them the
+Overall Coordinator's contact information. Do not argue.
+
+Overall Coordinator: _______________  Phone: ____________</pre>
+
+<h2>Claim Response Card</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+Claim Response Card — Version ___ — [Date]
+
+CLAIM: "[as circulated]"
+FINDING: [Supported / Contradicted / Partially accurate /
+          Not established]
+CITATION: [agency, document, date, item/page]
+SAY: "[the exact sentence, plainly worded]"
+
+CLAIM: "[as circulated]"
+FINDING: ______
+CITATION: ______
+SAY: "______"
+
+─────────────────────────────────────────
+IF YOU DON'T KNOW: "I don't know — I'll find the record
+and get back to you." Then do it.
+
+IF THEY'RE RIGHT: "You're right, and here's the document."
+
+IF THEY WON'T LISTEN: "Fair enough. Good talking with you."
+Then stop.
+
+NEVER: argue, characterize a person, guess, or cite anything
+you can't produce.</pre>
+`
+},
+{
+id:"fact-sheet", group:"Resources", title:"The Fact Sheet", minutes:5, hold:true,
+summary:"Not written yet. The template and what has to go in it.",
+html:`
+<div class="hold"><div class="t">This content does not exist yet</div>
+<p>The Fact Sheet holds the group&rsquo;s actual findings on actual claims. It is written by the Record Director in Phase 2, and no entry goes in until it has cleared two-person verification. Nobody should carry a blank version anywhere.</p></div>
+
+<h2>Template</h2>
+<pre>APOPKA SENIORS FOR GOOD GOVERNANCE
+What the Record Shows — Version ___ — [Date]
+
+We are volunteers. We read public records and tell you what they say.
+Don't take our word for anything below — every citation tells you
+exactly where to look it up yourself.
+
+─────────────────────────────────────────────────
+WHAT'S BEING SAID: "[claim, in the words it circulates]"
+
+WHAT THE RECORD SHOWS: [Supported / Contradicted /
+Partially accurate / Not established]
+
+[One to three sentences describing what the document says.]
+
+WHERE TO FIND IT: [Agency], [document type], [date],
+[item/page]. Available at [location or URL], or by request
+at [office].
+─────────────────────────────────────────────────
+
+[Repeat per claim]
+
+STILL OPEN: [Claims where we have requested records but
+have not received them. Date requested: ______]
+
+IF WE GET SOMETHING WRONG, we publish a correction within
+72 hours through every channel the original went out through.
+Tell us: [contact]
+
+CONTACT: [Name], [Phone], [Email]</pre>
+`
+},
+{
+id:"handbook", group:"Resources", title:"Team Lead Handbook", minutes:5, hold:true,
+summary:"Not written yet. Issued separately at training.",
+html:`
+<div class="hold"><div class="t">This content does not exist yet</div>
+<p>The plan lists the Team Lead Handbook as issued separately, with every Team Lead receiving a copy at training. Until it is written, Team Leads work from <a href="#structure">How we are organized</a> and <a href="#phase-1">Foundation: building the teams</a>.</p></div>
+`
+}
+];
+
+/* ============================================================
+   APP
+   ============================================================ */
+const KEY = "asgg-progress-v2";
+const load = () => { try { return new Set(JSON.parse(localStorage.getItem(KEY)) || []); } catch { return new Set(); } };
+const save = s => { try { localStorage.setItem(KEY, JSON.stringify([...s])); } catch {} };
+let done = load();
+
+const groups = () => {
+  const order = [];
+  SECTIONS.forEach(s => { if (!order.includes(s.group)) order.push(s.group); });
+  return order.map(g => ({ group: g, items: SECTIONS.filter(s => s.group === g) }));
+};
+
+function buildNav(active) {
+  const el = document.getElementById("navlist");
+  el.innerHTML = groups().map(g => `
+    <div class="navgroup"><h3>${g.group}</h3><ul>${
+      g.items.map(s => `<li><a href="#${s.id}" class="${s.id === active ? "on" : ""}">
+        <span class="dot ${done.has(s.id) ? "done" : "todo"}" aria-hidden="true">${done.has(s.id) ? "\u25CF" : "\u25CB"}</span>${s.title}</a></li>`).join("")
+    }</ul></div>`).join("");
+}
+
+function home() {
+  const pct = Math.round((done.size / SECTIONS.length) * 100);
+  const msg = done.size === 0
+    ? "Start with Our mission. It takes about fifteen minutes."
+    : done.size === SECTIONS.length
+      ? "You have been through everything. Come back when the material is updated."
+      : "Pick up wherever you left off. Nothing has to be done in one sitting.";
+  return `
+  <div class="hero">
+    <h1>Volunteer training</h1>
+    <p class="lede" style="margin:0">${MISSION}</p>
+  </div>
+  <div class="card">
+    <b>${done.size} of ${SECTIONS.length} sections done</b>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <p style="margin:0;color:var(--muted)">${msg}</p>
+  </div>
+  ${groups().map(g => {
+    const n = g.items.filter(s => done.has(s.id)).length;
+    return `<section>
+      <div class="ghead"><h2>${g.group}</h2><span>${n}/${g.items.length}</span></div>
+      <ul class="mods">${g.items.map(s => `
+        <li><a class="modlink ${done.has(s.id) ? "done" : ""} ${s.hold ? "hold" : ""}" href="#${s.id}">
+          <span class="top"><span class="ttl">${s.title}</span><span class="min">${s.minutes} min</span></span>
+          <p class="sum">${s.summary}</p>
+          ${s.hold ? '<span class="flag">Content not written yet</span>' : ""}
+          ${done.has(s.id) && !s.hold ? '<span class="tick">\u2713 Done</span>' : ""}
+        </a></li>`).join("")}</ul>
+    </section>`;
+  }).join("")}`;
+}
+
+function page(s) {
+  const i = SECTIONS.indexOf(s);
+  const prev = i > 0 ? SECTIONS[i - 1] : null;
+  const next = i < SECTIONS.length - 1 ? SECTIONS[i + 1] : null;
+  const isDone = done.has(s.id);
+  return `
+  <article>
+    <p class="eyebrow">${s.group}</p>
+    <h1>${s.title}</h1>
+    <p class="meta">About ${s.minutes} minutes &middot; Section ${i + 1} of ${SECTIONS.length}</p>
+    ${s.html}
+    <div style="margin-top:2.5rem">
+      <button type="button" class="btn ${isDone ? "ghost" : ""}" id="donebtn" data-id="${s.id}">
+        ${isDone ? "Completed \u2014 undo" : "Mark this section done"}
+      </button>
+    </div>
+    <nav class="footnav">
+      ${prev ? `<a class="btn ghost" href="#${prev.id}">&larr; ${prev.title}</a>` : '<a class="btn ghost" href="#home">&larr; All sections</a>'}
+      ${next ? `<a class="btn ghost" href="#${next.id}">${next.title} &rarr;</a>` : '<a class="btn ghost" href="#home">Back to all sections</a>'}
+    </nav>
+  </article>`;
+}
+
+function render() {
+  const id = (location.hash || "#home").slice(1);
+  const s = SECTIONS.find(x => x.id === id);
+  document.getElementById("content").innerHTML = s ? page(s) : home();
+  buildNav(s ? s.id : null);
+  document.title = (s ? s.title + " \u2014 " : "") + "Apopka Seniors for Good Governance";
+  window.scrollTo(0, 0);
+  document.getElementById("sidenav").classList.remove("open");
+  document.getElementById("menubtn").setAttribute("aria-expanded", "false");
+
+  const btn = document.getElementById("donebtn");
+  if (btn) btn.addEventListener("click", () => {
+    const k = btn.dataset.id;
+    done.has(k) ? done.delete(k) : done.add(k);
+    save(done);
+    render();
+  });
+}
+
+document.getElementById("menubtn").addEventListener("click", e => {
+  const nav = document.getElementById("sidenav");
+  const open = nav.classList.toggle("open");
+  e.target.setAttribute("aria-expanded", String(open));
+  e.target.textContent = open ? "Close menu" : "Menu";
+});
+
+document.getElementById("resetlink").addEventListener("click", e => {
+  e.preventDefault();
+  if (confirm("Clear your progress on this device? The training material is not affected.")) {
+    done = new Set(); save(done); location.hash = "#home"; render();
+  }
+});
+
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
